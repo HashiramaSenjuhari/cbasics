@@ -1,5 +1,27 @@
 #include <stdio.h>
 
+
+// ####################################################################################
+// Macro are inline functions but are done in pre process (before compliation) is sent to complier and remove the unnessary code by picking only needed code after validation
+// ####################################################################################
+
+
+// ###################################################################################
+// defined is used to check wheather the macro is present or not // return BOOLEAN
+//
+// usage
+//
+// #define BILLIONAIRE 24;
+// #if defined(BILLIONAIRE)
+//    printf("%s","present")
+// #elif defined(BILLIONAIRE) && GREAT == 24
+// #elif defined(BILLIONAIRES) // this wont work because macro not present
+//    printf("%s","not present")
+//
+//
+// ###################################################################################
+
+
 // #####################################################################################
 // Object Like Macros (Constants / simple replacement)
 // #####################################################################################
@@ -76,8 +98,6 @@ void predefined_macro(){
 // Variadic Macro
 // ######################################################################################
 
-
-
 #define LOG(fmt,...) \
   printf("[LOG] " fmt __VA_OPT__(, __VA_ARGS__))
 
@@ -102,6 +122,34 @@ void predefined_macro(){
    */
 // ######################################################################################
 
+
+// ######################################################################################
+
+
+// ######################################################################################
+// if elif else in complie time
+// ######################################################################################
+
+#define GREAT 24
+void billionaires(){
+  #if defined(GREAT) && GREAT == 24
+    printf("%s","billionaire");
+  #elif GREAT >= 100
+    printf("%s","billionairegreat");
+  #else
+    printf("%s","billionairehari");
+  #endif
+}
+
+// this will pre process and remove the unnessary code and send to complier
+//
+// AFTER PRE PROCESS
+//
+// void billionaires(){
+//    printf("%s","billionaire");
+// }
+
+// ######################################################################################
 
 int main(){
   int b24 = 24;
